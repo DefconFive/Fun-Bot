@@ -17,7 +17,8 @@ from discord.message import Message
 from discord.client import Client
 
 client = discord.Client()
-member = discord.Member()
+message = discord.Message()
+
 
 
 description = '''Funbot is a bot made for fun (obviously)! Written in Python by Blake with help from his good friend Zach.'''
@@ -29,9 +30,7 @@ bot = commands.Bot(command_prefix='-', description=description)
 @bot.command(description='Bot simply replies Pong! useful for knowing if its online or not')	
 async def ping():
 	"""Bot replies Pong!"""
-	_get_all_members()
-
-	if member.id == '183790956754108416': 
+	if message.author.id == '183790956754108416': 
 		await bot.say('Hello Master! :wave:')
 	else:
 		await bot.say('Pong!')
