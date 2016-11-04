@@ -9,6 +9,7 @@ import json
 
 from discord.ext import commands
 from discord.message import Message
+from . import exceptions
 
 client = discord.Client()
 
@@ -39,67 +40,71 @@ async def say(*, message: str):
 	
 @bot.command()
 async def roll(dice : str):
-    """Rolls a dice in NdN format."""
-    try:
-        rolls, limit = map(int, dice.split('d'))
-    except Exception:
-        await bot.say('Format has to be in NdN!')
-        return
+	"""Rolls a dice in NdN format."""
+	try:
+		rolls, limit = map(int, dice.split('d'))
+	except Exception:
+		await bot.say('Format has to be in NdN!')
+		return
 
-    result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
-    await bot.say(result)
+	result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
+	await bot.say(result)
 
 @bot.command()
 async def repeat(times : int, content='repeating...'):
-    """Repeats a message multiple times."""
-    if times > 5:
-    	await bot.say('```ERROR: Cannot repeat more than 5 times!```')
-    else:	
-    	for i in range(times):
-        	await bot.say(content)
+	"""Repeats a message multiple times."""
+	if times > 5:
+		await bot.say('```ERROR: Cannot repeat more than 5 times!```')
+	else:	
+		for i in range(times):
+			await bot.say(content)
 
 @bot.command()
 async def cat():
 	"""Posts a random cat picture"""
 	async with aiohttp.get('http://random.cat/meow') as r:
 		if r.status == 200:
-        	js = await r.json()
-       		await bot.say(channel, js['file'])
+			js = await r.json()
+			await bot.say(channel, js['file'])
 
+@bot.command()
+async def restart():
+	"""restarts bot"""
+	raise exceptions.RestartSignal
 
 @bot.event
 async def on_message(message):
-    # we do not want the bot to reply to itself
-    if message.author == bot.user:
-        return
+	# we do not want the bot to reply to itself
+	if message.author == bot.user:
+		return
 
-    if message.content.startswith('-guess'):
-        await bot.send_message(message.channel, 'Guess a number between 1 to 10')
+	if message.content.startswith('-guess'):
+		await bot.send_message(message.channel, 'Guess a number between 1 to 10')
 
-        def guess_check(m):
-            return m.content.isdigit()
+		def guess_check(m):
+			return m.content.isdigit()
 
-        guess = await bot.wait_for_message(timeout=5.0, author=message.author, check=guess_check)
-        answer = random.randint(1, 10)
-        if guess is None:
-            fmt = 'Sorry, you took too long. It was {}.'
-            await bot.send_message(message.channel, fmt.format(answer))
-            return
-        if int(guess.content) == answer:
-            await bot.send_message(message.channel, 'You are right!')
-        else:
-            await bot.send_message(message.channel, 'Sorry. It is actually {}.'.format(answer))
+		guess = await bot.wait_for_message(timeout=5.0, author=message.author, check=guess_check)
+		answer = random.randint(1, 10)
+		if guess is None:
+			fmt = 'Sorry, you took too long. It was {}.'
+			await bot.send_message(message.channel, fmt.format(answer))
+			return
+		if int(guess.content) == answer:
+			await bot.send_message(message.channel, 'You are right!')
+		else:
+			await bot.send_message(message.channel, 'Sorry. It is actually {}.'.format(answer))
 
-    await bot.process_commands(message)
+	await bot.process_commands(message)
 
 
 
 @bot.event			
 async def on_ready():
 
-    print('Logged in as:')
-    print('Name:'  + bot.user.name)
-    print('id:'  + bot.user.id)
-    print('------')
+	print('Logged in as:')
+	print('Name:'  + bot.user.name)
+	print('id:'  + bot.user.id)
+	print('------')
 
 bot.run('MjIzMjQ5NTQzNTc4MjU1MzYw.Cu2Dpg.1US_ESdFGSVWMLbnWJIHQd1QnQU')
