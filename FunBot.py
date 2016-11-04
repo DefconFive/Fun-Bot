@@ -9,7 +9,6 @@ import json
 
 from discord.ext import commands
 from discord.message import Message
-from other import exceptions
 
 client = discord.Client()
 
