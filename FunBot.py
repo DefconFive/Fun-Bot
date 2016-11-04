@@ -70,6 +70,7 @@ async def cat():
 @bot.command()
 async def restart():
 	"""restarts bot"""
+	await bot.say('```Restarting!!```')
 	os.execl(sys.executable, sys.executable, *sys.argv)
 
 @bot.event
