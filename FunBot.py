@@ -91,8 +91,8 @@ else:
 
 try:
     with aiohttp.Timeout(10):
-        async with bot.aiosession.get(thing) as res:
-            await bot.edit_profile(avatar=await res.read())
+		with self.aiosession.get(thing) as res:
+		await self.edit_profile(avatar=await res.read())
 
 except Exception as e:
     raise exceptions.CommandError("Unable to change avatar: %s" % e, expire_in=20)
