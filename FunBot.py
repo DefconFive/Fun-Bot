@@ -70,7 +70,7 @@ async def cat():
 @bot.command()
 async def restart():
 	"""restarts bot"""
-	raise exceptions.RestartSignal
+	os.execl(sys.executable, sys.executable, *sys.argv)
 
 @bot.event
 async def on_message(message):
