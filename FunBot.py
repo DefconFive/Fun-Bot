@@ -14,9 +14,10 @@ from discord.enums import ChannelType
 from discord.voice_client import VoiceClient
 from discord.ext.commands.bot import _get_variable
 from discord.message import Message
-from discord.user import User
+from discord.client import Client
 
 client = discord.Client()
+user = discord.User()
 
 description = '''Funbot is a bot made for fun (obviously)! Written in Python by Blake with help from his good friend Zach.'''
 
@@ -27,7 +28,7 @@ bot = commands.Bot(command_prefix='-', description=description)
 @bot.command(description='Bot simply replies Pong! useful for knowing if its online or not')	
 async def ping():
 	"""Bot replies Pong!"""
-	if Message.author == "183790956754108416":
+	if user.id == '183790956754108416':
 		await bot.say('Hello Master! :wave:')
 	else:
 		await bot.say('Pong!')
