@@ -83,16 +83,16 @@ async def setavatar(self, message, url=None):
 	"""
 
 if message.attachments:
-    thing = message.attachments[0]['url']
+	thing = message.attachments[0]['url']
 elif url:
-    thing = url.strip('<>')
+	thing = url.strip('<>')
 else:
-    raise exceptions.CommandError("Unable to change avatar! Please upload an image or provide a link to one.", expire_in=20)
+	raise exceptions.CommandError("Unable to change avatar! Please upload an image or provide a link to one.", expire_in=20)
 
 try:
-    with aiohttp.Timeout(10):
-		with self.aiosession.get(thing) as res:
-		await self.edit_profile(avatar=await res.read())
+	with aiohttp.Timeout(10):
+		with bot.user.aiosession.get(thing) as res:
+			await bot.user.edit_profile(avatar=await res.read())
 
 except Exception as e:
     raise exceptions.CommandError("Unable to change avatar: %s" % e, expire_in=20)
