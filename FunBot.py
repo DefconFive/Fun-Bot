@@ -12,7 +12,7 @@ from discord.message import Message
 
 client = discord.Client()
 
-
+# My test coment - Zach
 description = '''Funbot is a bot made for fun (obviously)! Written in Python by Blake with help from his good friend Zach.'''
 
 
