@@ -8,7 +8,13 @@ import os
 import json
 
 from discord.ext import commands
+from discord import utils
+from discord.object import Object
+from discord.enums import ChannelType
+from discord.voice_client import VoiceClient
+from discord.ext.commands.bot import _get_variable
 from discord.message import Message
+from discord.user import User
 
 client = discord.Client()
 
@@ -71,34 +77,6 @@ async def restart():
 	"""restarts bot"""
 	await bot.say('```Restarting!!```')
 	os.execl(sys.executable, sys.executable, *sys.argv)
-
-@bot.command()
-async def setavatar(self, message, url=None):
-	"""
-	Usage:
-	{command_prefix}setavatar [url]
-
-	Changes the bot's avatar.
-	Attaching a file and leaving the url parameter blank also works.
-	"""
-
-if message.attachments:
-	thing = message.attachments[0]['url']
-elif url:
-	thing = url.strip('<>')
-else:
-	raise exceptions.CommandError("Unable to change avatar! Please upload an image or provide a link to one.", expire_in=20)
-
-try:
-	with aiohttp.Timeout(10):
-		with bot.user.aiosession.get(thing) as res:
-			await bot.user.edit_profile(avatar=await res.read())
-
-except Exception as e:
-    raise exceptions.CommandError("Unable to change avatar: %s" % e, expire_in=20)
-
-return Response(":ok_hand:", delete_after=20)
-
 
 @bot.event
 async def on_message(message):
