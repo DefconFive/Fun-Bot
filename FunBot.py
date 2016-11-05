@@ -73,7 +73,7 @@ async def cat():
 	async with aiohttp.get('http://random.cat/meow') as r:
 		if r.status == 200:
 			js = await r.json()
-			await bot.say(js['file'])
+			await bot.say(js['file'], delete_after=30)
 
 @bot.command()
 async def restart():
