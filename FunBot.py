@@ -65,7 +65,7 @@ async def repeat(times : int, content='repeating...'):
 		await bot.say('```ERROR: Cannot repeat more than 5 times!```', delete_after=20)
 	else:	
 		for i in range(times):
-			await bot.say(content, delete_after=20)
+			await bot.say(content, delete_after=30)
 
 @bot.command()
 async def cat():
