@@ -31,9 +31,9 @@ bot = commands.Bot(command_prefix='-', description=description)
 async def ping():
 	"""Bot replies Pong!"""
 	if message.author.id == '183790956754108416': 
-		await bot.say('Hello Master! :wave:')
+		await bot.say('Hello Master! :wave:', delete_after=20)
 	else:
-		await bot.say('Pong!')
+		await bot.say('Pong!', delete_after=20)
 	
 
 @bot.command(description='For when you wanna settle the score some other way')
@@ -62,10 +62,10 @@ async def roll(dice : str):
 async def repeat(times : int, content='repeating...'):
 	"""Repeats a message multiple times."""
 	if times > 5:
-		await bot.say('```ERROR: Cannot repeat more than 5 times!```')
+		await bot.say('```ERROR: Cannot repeat more than 5 times!```', delete_after=20)
 	else:	
 		for i in range(times):
-			await bot.say(content)
+			await bot.say(content, delete_after=20)
 
 @bot.command()
 async def cat():
@@ -73,7 +73,7 @@ async def cat():
 	async with aiohttp.get('http://random.cat/meow') as r:
 		if r.status == 200:
 			js = await r.json()
-			await bot.say(js['file'], delete_after=30)
+			await bot.say(js['file'], delete_after=20)
 
 @bot.command()
 async def restart():
