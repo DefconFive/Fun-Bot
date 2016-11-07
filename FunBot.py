@@ -47,6 +47,7 @@ async def on_message(message):
 			if r.status == 200:
 				js = await r.json()
 				await client.send_message(message.channel,js['file'])
+	#restart command
 	elif message.content.startswith('{}restart'.format(cmd)):
 		msg = '```Restarting!!```'
 		await client.send_message(message.channel, msg)
