@@ -35,7 +35,10 @@ async def on_message(message):
 			msg = 'Bang, Bang! {0.author.mention}'.format(message)
 			await client.send_message(message.channel, msg)
 		elif message.author.id == '183790956754108416':
-			msg = ':kissing_heart: {0.author.mention}'.format(message)
+			msg = 'Hello Master! :wave: {0.author.mention}'.format(message)
+			await client.send_message(message.channel, msg)
+		elif message.author.id == '129439119737749505':
+			msg  = ':middle_finger: {0.author,mention}'.format(message)
 			await client.send_message(message.channel, msg)
 		else:
 			msg = 'PONG! {0.author.mention}'.format(message)
