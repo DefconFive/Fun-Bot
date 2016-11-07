@@ -6,7 +6,6 @@ import http
 import aiohttp
 import os
 import json
-
 client = discord.Client()
 #bot setup for dual testing
 #Uncomment depending on who you are.
@@ -49,6 +48,7 @@ async def on_message(message):
 			if r.status == 200:
 				js = await r.json()
 				await client.send_message(message.channel,js['file'])
+
 @client.event
 async def on_ready():
 	print('Logged in as')
