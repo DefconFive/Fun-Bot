@@ -19,13 +19,12 @@ cmd = '-'
 #cmd = '--'
 
 
-
 @client.event
 async def on_message(message):
 	# we do not want the bot to reply to itself
 	if message.author == client.user:
 		return
-	#Ping command. 
+	#help command. 
 	if message.content.startswith('{}help'.format(cmd)):
 		await client.send_message(message.channel,'help?')
 	#Ping command. 
@@ -37,17 +36,28 @@ async def on_message(message):
 			msg = 'Hello Master! :wave: {0.author.mention}'.format(message)
 			await client.send_message(message.channel, msg)
 		elif message.author.id == '129439119737749505':
-			msg  = ':middle_finger: {0.author,mention}'.format(message)
+			msg  = ':middle_finger: {0.author.mention}'.format(message)
 			await client.send_message(message.channel, msg)
 		else:
 			msg = 'PONG! {0.author.mention}'.format(message)
 			await client.send_message(message.channel, msg)
-	# cat command
+	#cat command
 	elif message.content.startswith('{}cat'.format(cmd)):
 		async with aiohttp.get('http://random.cat/meow') as r:
 			if r.status == 200:
 				js = await r.json()
 				await client.send_message(message.channel,js['file'])
+	elif message.content.startswith('{}restart'.format(cmd)):
+		msg = '```Restarting!!```'
+		await client.send_message(message.channel, msg)
+		os.execl(sys.executable, sys.executable, *sys.argv)
+
+	
+
+
+
+        
+			
 
 @client.event
 async def on_ready():
