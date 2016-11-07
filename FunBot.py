@@ -52,6 +52,23 @@ async def on_message(message):
 		msg = '```Restarting!!```'
 		await client.send_message(message.channel, msg)
 		os.execl(sys.executable, sys.executable, *sys.argv)
+	#guess command
+	if message.content.startswith('{}guess'.format(cmd)):
+		await client.send_message(message.channel, 'Guess a number between 1 to 10')
+
+		def guess_check(m):
+			return m.content.isdigit()
+
+		guess = await client.wait_for_message(timeout=5.0, author=message.author, check=guess_check)
+		answer = random.randint(1, 10)
+		if guess is None:
+			fmt = 'Sorry, you took too long. It was {}.'
+			await client.send_message(message.channel, fmt.format(answer))
+			return
+		if int(guess.content) == answer:
+			await client.send_message(message.channel, 'You are right!')
+		else:
+			await client.send_message(message.channel, 'Sorry. It is actually {}.'.format(answer))
 
 	
 
