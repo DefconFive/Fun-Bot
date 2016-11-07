@@ -21,7 +21,7 @@ cmd = '-'
 
 
 
-@client.event
+@bot.event
 async def on_message(message):
 	# we do not want the bot to reply to itself
 	if message.author == client.user:
