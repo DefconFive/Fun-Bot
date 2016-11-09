@@ -6,6 +6,9 @@ import http
 import aiohttp
 import os
 import json
+import giphypop
+from giphypop import translate
+
 client = discord.Client()
 #bot setup for dual testing
 #Uncomment depending on who you are.
@@ -48,6 +51,10 @@ async def on_message(message):
 			if r.status == 200:
 				js = await r.json()
 				await client.send_message(message.channel,js['file'])
+	# Trump command
+	elif message.content.startswith('{}trump'.format(cmd)):
+		img = translate('Trump', api_key='dc6zaTOxFJmzC')
+		await client.send_message(message.channel,img)
 
 @client.event
 async def on_ready():
