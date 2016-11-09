@@ -22,13 +22,12 @@ cmd = '-'
 #cmd = '--'
 
 
-
 @client.event
 async def on_message(message):
 	# we do not want the bot to reply to itself
 	if message.author == client.user:
 		return
-	#Ping command. 
+	#help command. 
 	if message.content.startswith('{}help'.format(cmd)):
 		await client.send_message(message.channel,'help?')
 	#Ping command. 
@@ -40,12 +39,12 @@ async def on_message(message):
 			msg = 'Hello Master! :wave: {0.author.mention}'.format(message)
 			await client.send_message(message.channel, msg)
 		elif message.author.id == '129439119737749505':
-			msg  = ':middle_finger: {0.author,mention}'.format(message)
+			msg  = ':middle_finger: {0.author.mention}'.format(message)
 			await client.send_message(message.channel, msg)
 		else:
 			msg = 'PONG! {0.author.mention}'.format(message)
 			await client.send_message(message.channel, msg)
-	# cat command
+	#cat command
 	elif message.content.startswith('{}cat'.format(cmd)):
 		async with aiohttp.get('http://random.cat/meow') as r:
 			if r.status == 200:
@@ -55,6 +54,31 @@ async def on_message(message):
 	elif message.content.startswith('{}trump'.format(cmd)):
 		img = translate('Trump', api_key='dc6zaTOxFJmzC')
 		await client.send_message(message.channel,img)
+
+	#restart command
+	elif message.content.startswith('{}restart'.format(cmd)):
+		msg = '```Restarting!!```'
+		await client.send_message(message.channel, msg)
+		os.execl(sys.executable, sys.executable, *sys.argv)
+	#guess command
+	elif message.content.startswith('{}guess'.format(cmd)):
+		await client.send_message(message.channel, 'Guess a number between 1 to 10')
+
+		def guess_check(m):
+			return m.content.isdigit()
+
+		guess = await client.wait_for_message(timeout=5.0, author=message.author, check=guess_check)
+		answer = random.randint(1, 10)
+		if guess is None:
+			fmt = 'Sorry, you took too long. It was {}.'
+			await client.send_message(message.channel, fmt.format(answer))
+			return
+		if int(guess.content) == answer:
+			await client.send_message(message.channel, 'You are right!')
+		else:
+			await client.send_message(message.channel, 'Sorry. It is actually {}.'.format(answer))
+
+
 
 @client.event
 async def on_ready():
