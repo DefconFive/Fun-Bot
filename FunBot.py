@@ -58,6 +58,10 @@ async def on_message(message):
 	elif message.content.startswith('{}hillary'.format(cmd)):
 		img = translate('Hillary', api_key='dc6zaTOxFJmzC')	
 		await client.send_message(message.channel,img)
+	#Bernie command
+	elif message.content.startswith('{}bernie'.format(cmd)):
+		img = translate('Bernie', api_key='dc6zaTOxFJmzC')
+		await client.send_message(message.channel,img)
 	#restart command
 	elif message.content.startswith('{}restart'.format(cmd)):
 		msg = '```Restarting!!```'
