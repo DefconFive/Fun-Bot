@@ -50,11 +50,14 @@ async def on_message(message):
 			if r.status == 200:
 				js = await r.json()
 				await client.send_message(message.channel,js['file'])
-	# Trump command
+	#Trump command
 	elif message.content.startswith('{}trump'.format(cmd)):
 		img = translate('Trump', api_key='dc6zaTOxFJmzC')
+		await client.send_message(message.channel,img)	
+	#Hillary command
+	elif message.content.startswith('{}hillary'.format(cmd)):
+		img = translate('Hillary', api_key='dc6zaTOxFJmzC')	
 		await client.send_message(message.channel,img)
-
 	#restart command
 	elif message.content.startswith('{}restart'.format(cmd)):
 		msg = '```Restarting!!```'
