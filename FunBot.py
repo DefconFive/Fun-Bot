@@ -9,6 +9,7 @@ import json
 import giphypop
 from giphypop import translate
 
+
 client = discord.Client()
 #bot setup for dual testing
 #Uncomment depending on who you are.
@@ -29,7 +30,7 @@ async def on_message(message):
 		return
 	#help command. 
 	if message.content.startswith('{}help'.format(cmd)):
-		await client.send_message(message.channel,'help?')
+		await client.send_message(message.Channel,'help?')
 	#Ping command. 
 	elif message.content.startswith('{}ping'.format(cmd)):
 		if message.author.id == '129437909131591680':
@@ -61,6 +62,10 @@ async def on_message(message):
 	#Bernie command
 	elif message.content.startswith('{}bernie'.format(cmd)):
 		img = translate('Bernie', api_key='dc6zaTOxFJmzC')
+		await client.send_message(message.channel,img)
+	#Horse command
+	elif message.content.startswith('{}horse'.format(cmd)):
+		img = translate('Horse', api_key='dc6zaTOxFJmzC')
 		await client.send_message(message.channel,img)
 	#restart command
 	elif message.content.startswith('{}restart'.format(cmd)):
