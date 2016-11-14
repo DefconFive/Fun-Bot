@@ -14,13 +14,13 @@ client = discord.Client()
 #bot setup for dual testing
 #Uncomment depending on who you are.
 #Blake's Setup
-Token = 'MjIzMjQ5NTQzNTc4MjU1MzYw.Cu2Dpg.1US_ESdFGSVWMLbnWJIHQd1QnQU'
+#Token = 'MjIzMjQ5NTQzNTc4MjU1MzYw.Cu2Dpg.1US_ESdFGSVWMLbnWJIHQd1QnQU'
 # this is the bot command prefix
-cmd = '-'
+#cmd = '-'
 #Zach's Setup
-#Token = 'MjI0NzE5NjI1OTIzODU0MzM2.Cremqw.tKWTMcD9SqF_nThAjJ3krj9uXWw'
+Token = 'MjI0NzE5NjI1OTIzODU0MzM2.Cremqw.tKWTMcD9SqF_nThAjJ3krj9uXWw'
 # this is the bot command prefix
-#cmd = '--'
+cmd = '--'
 
 
 @client.event
@@ -41,6 +41,9 @@ async def on_message(message):
 			await client.send_message(message.channel, msg)
 		elif message.author.id == '129439119737749505':
 			msg  = ':middle_finger: {0.author.mention}'.format(message)
+			await client.send_message(message.channel, msg)
+		elif message.author.id == '238469392155803649':
+			msg = 'Hello Queen Alexis! :wave: {0.author.mention}'.format(message)
 			await client.send_message(message.channel, msg)
 		else:
 			msg = 'PONG! {0.author.mention}'.format(message)
@@ -67,6 +70,10 @@ async def on_message(message):
 	elif message.content.startswith('{}horse'.format(cmd)):
 		img = translate('Horse', api_key='dc6zaTOxFJmzC')
 		await client.send_message(message.channel,img)
+	#Dog command
+	elif message.content.startswith('{}dog'.format(cmd)):
+		img = translate('Dog', api_key='dc6zaTOxFJmzC')
+		await client.send_message(message.channel,img)
 	#restart command
 	elif message.content.startswith('{}restart'.format(cmd)):
 		msg = '```Restarting!!```'
@@ -89,7 +96,6 @@ async def on_message(message):
 			await client.send_message(message.channel, 'You are right!')
 		else:
 			await client.send_message(message.channel, 'Sorry. It is actually {}.'.format(answer))
-
 
 
 @client.event
