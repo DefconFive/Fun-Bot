@@ -40,6 +40,7 @@ async def on_message(message):
 			'\n\n-dog - Bot posts a random dog gif'\
 			'\n\n-restart - restarts the bot (only works for the bot owner)'\
 			'\n\n-guess - starts the guessing game'\
+			'\n\n-mark - a special song written by Bahar for Mark'\
 			'\n\nBot coded by Blake with help from Zach.```'\
 		
 		await client.send_message(message.channel, msg)
@@ -52,7 +53,7 @@ async def on_message(message):
 			msg = 'Hello Master! :wave: {0.author.mention}'.format(message)
 			await client.send_message(message.channel, msg)
 		elif message.author.id == '129439119737749505':
-			msg  = ':middle_finger: {0.author.mention}'.format(message)
+			msg  = 'You\'re a nerd. you ain\'t got no balls! {0.author.mention}'.format(message)
 			await client.send_message(message.channel, msg)
 		elif message.author.id == '238469392155803649':
 			msg = 'Hello Queen Alexis! :wave: {0.author.mention}'.format(message)
@@ -86,15 +87,28 @@ async def on_message(message):
 	elif message.content.startswith('{}dog'.format(cmd)):
 		img = translate('Dog', api_key='dc6zaTOxFJmzC')
 		await client.send_message(message.channel,img)
-	#restart command
+	#Restart command
 	elif message.content.startswith('{}restart'.format(cmd)):
 		if message.author.id == '183790956754108416':
 			msg = '```Restarting!!```'
 			await client.send_message(message.channel, msg)
 			os.execl(sys.executable, sys.executable, *sys.argv)
+		elif message.author.id == '129437909131591680':
+			msg = '```Restarting!!```'
+			await client.send_message(message.channel, msg)
+			os.execl(sys.executable, sys.executable, *sys.argv)
 		else:
-			msg = '```ERROR: You are not cool enough to use this command!```'
-	#guess command
+			msg = '```ERROR: What the fuck do you think you\'re doing?!```'
+			await client.send_message(message.channel, msg)
+	#Mark command
+	elif message.content.startswith('{}mark'.format(cmd)):
+		msg = '```Mark is a nerd. He ain\'t got no balls.'\
+			'\n\nHis dick isn\'t big and his asshole\'s not small.'\
+			'\n\nThem weird ol voices make you wanna die.'\
+			'\n\nSingin\' pen pinapple until the day that I die.'\
+			'\n\nSingin\' pen pineapple until the day I die.```'
+		await client.send_message(message.channel, msg)
+	#Guess command
 	elif message.content.startswith('{}guess'.format(cmd)):
 		await client.send_message(message.channel, 'Guess a number between 1 to 10')
 
