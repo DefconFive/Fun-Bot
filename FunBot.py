@@ -38,9 +38,10 @@ async def on_message(message):
 			'\n\n-bernie - Bot posts a random Bernie gif'\
 			'\n\n-horse - Bot posts a random horse gif'\
 			'\n\n-dog - Bot posts a random dog gif'\
-			'\n\n-restart - restarts the bot (can only works for the bot owner)'\
-			'\n\n-guess - starts the guessing game```'\
-
+			'\n\n-restart - restarts the bot (only works for the bot owner)'\
+			'\n\n-guess - starts the guessing game'\
+			'\n\nBot coded by Blake with help from Zach.```'\
+		
 		await client.send_message(message.channel, msg)
 	#Ping command. 
 	elif message.content.startswith('{}ping'.format(cmd)):
