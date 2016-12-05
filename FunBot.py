@@ -7,6 +7,7 @@ import aiohttp
 import os
 import json
 import giphypop
+
 from giphypop import translate
 
 
@@ -58,6 +59,12 @@ async def on_message(message):
 		elif message.author.id == '238469392155803649':
 			msg = 'Hello Queen Alexis! :wave: {0.author.mention}'.format(message)
 			await client.send_message(message.channel, msg)
+		elif message.author.id == '192664155348533248':
+			msg = 'Mr. Pattems! :grin: {0.author.mention}'.format(message)
+			await client.send_message(message.channel, msg)
+		elif message.author.id == '186653471762546688':
+			msg = 'Chad Chadderson! {0.author.mention}'.format(message)
+			await client.send_message(message.channel, msg)
 		else:
 			msg = 'PONG! {0.author.mention}'.format(message)
 			await client.send_message(message.channel, msg)
@@ -106,7 +113,8 @@ async def on_message(message):
 			'\n\nHis dick isn\'t big and his asshole\'s not small.'\
 			'\n\nThem weird ol voices make you wanna die.'\
 			'\n\nSingin\' pen pinapple until the day that I die.'\
-			'\n\nSingin\' pen pineapple until the day I die.```'
+			'\n\nSingin\' pen pineapple until the day I die.```'\
+
 		await client.send_message(message.channel, msg)
 	#Guess command
 	elif message.content.startswith('{}guess'.format(cmd)):
