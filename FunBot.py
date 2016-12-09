@@ -31,15 +31,16 @@ async def on_message(message):
 		return
 	#help command. 
 	if message.content.startswith('{}help'.format(cmd)):
+
 		msg = '```Heres a list of my commands:'\
-			'\n\n-Ping - Bot simply replies ping (unless your special) useful for knowing whether or not It\'s online'\
+			'\n\n-ping - Bot simply replies ping (unless your special) useful for knowing whether or not It\'s online'\
 			'\n\n-cat - Bot posts a random cat picture'\
 			'\n\n-trump - Bot posts a random Trump gif'\
 			'\n\n-hillary - Bot posts a random Hillary gif'\
 			'\n\n-bernie - Bot posts a random Bernie gif'\
 			'\n\n-horse - Bot posts a random horse gif'\
 			'\n\n-dog - Bot posts a random dog gif'\
-			'\n\n-restart - restarts the bot (only works for the bot owner)'\
+			'\n\n-restart - restarts the bot (only works for Blake and Zach aka the bot devs)'\
 			'\n\n-guess - starts the guessing game'\
 			'\n\n-mark - a special song written by Bahar for Mark'\
 			'\n\nBot coded by Blake with help from Zach.```'\
@@ -133,6 +134,9 @@ async def on_message(message):
 			await client.send_message(message.channel, 'You are right!')
 		else:
 			await client.send_message(message.channel, 'Sorry. It is actually {}.'.format(answer))
+
+
+
 
 
 @client.event
