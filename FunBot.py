@@ -121,6 +121,10 @@ async def on_message(message):
 			await client.logout()
 		else:
 			msg = '```ERROR: What the fuck do you think you\'re doing?!```'
+<<<<<<< HEAD
+=======
+			await client.send_message(message.channel, msg)
+>>>>>>> origin/master
 	#Mark command
 	elif message.content.startswith('{}mark'.format(cmd)):
 		msg = '```Mark is a nerd. He ain\'t got no balls.'\
