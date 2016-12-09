@@ -41,6 +41,7 @@ async def on_message(message):
 			'\n\n-horse - Bot posts a random horse gif'\
 			'\n\n-dog - Bot posts a random dog gif'\
 			'\n\n-restart - restarts the bot (only works for Blake and Zach aka the bot devs)'\
+			'\n\n-shutdown - turns the bot off (again only works for Blake and Zach)'\
 			'\n\n-guess - starts the guessing game'\
 			'\n\n-mark - a special song written by Bahar for Mark'\
 			'\n\nBot coded by Blake with help from Zach.```'\
@@ -110,8 +111,14 @@ async def on_message(message):
 			await client.send_message(message.channel, msg)
 	#shutdown command
 	elif message.content.startswith('{}shutdown'.format(cmd)):
-		await client.send_message(message.channel, 'Peace out guys! :v:')
-		await client.logout()
+		if message.author.id == '183790956754108416':
+			await client.send_message(message.channel, 'Peace out guys! :v:')
+			await client.logout()
+		elif message.author.id == '129437909131591680':
+			await client.send_message(message.channel, 'Peace out guys! :v:')
+			await client.logout()
+		else:
+			msg = '```ERROR: What the fuck do you think you\'re doing?!```'
 	#Mark command
 	elif message.content.startswith('{}mark'.format(cmd)):
 		msg = '```Mark is a nerd. He ain\'t got no balls.'\
