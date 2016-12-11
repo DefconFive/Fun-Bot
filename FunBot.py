@@ -8,6 +8,10 @@ import os
 import json
 import giphypop
 
+from discord import utils
+from discord.object import Object
+from discord.enums import ChannelType
+from discord.ext.commands.bot import _get_variable
 from giphypop import translate
 
 
@@ -44,6 +48,7 @@ async def on_message(message):
 			'\n\n-dog - Bot posts a random dog gif'\
 			'\n\n-restart - restarts the bot (only works for Blake and Zach aka the bot devs)'\
 			'\n\n-shutdown - turns the bot off (again only works for Blake and Zach)'\
+			'\n\n-leave [server name] - gets the bot to leave a server (Only works for Blake)'\
 			'\n\n-guess - starts the guessing game'\
 			'\n\n-mark - a special song written by Bahar for Mark'\
 			'\n\nBot coded by Blake with help from Zach.```'\
@@ -109,7 +114,7 @@ async def on_message(message):
 			await client.send_message(message.channel, msg)
 			os.execl(sys.executable, sys.executable, *sys.argv)
 		else:
-			msg = '```ERROR: What the fuck do you think you\'re doing?!```'
+			msg = '```ERROR: What the FUCK do you think you\'re doing?!```'
 			await client.send_message(message.channel, msg)
 	#shutdown command
 	elif message.content.startswith('{}shutdown'.format(cmd)):
@@ -120,7 +125,15 @@ async def on_message(message):
 			await client.send_message(message.channel, 'Peace out guys! :v:')
 			await client.logout()
 		else:
-			msg = '```ERROR: What the fuck do you think you\'re doing?!```'
+			msg = '```ERROR: What the FUCK do you think you\'re doing?!```'
+			await client.send_message(message.channel, msg)
+	#leave command
+	elif message.content.startswith('{}leave'.format(cmd)):
+		if message.author.id == '183790956754108416':
+			await client.send_message(message.channel, 'Ok, I\'ll leave that server! :ok_hand:')
+			await client.leave_server(discord.utils.get(client.servers))
+		else:
+			msg = '```ERROR: What the FUCK do you think you\'re doing?!```'
 			await client.send_message(message.channel, msg)
 	#Mark command
 	elif message.content.startswith('{}mark'.format(cmd)):
