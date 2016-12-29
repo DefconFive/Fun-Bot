@@ -51,6 +51,7 @@ async def on_message(message):
 			'\n\n-leave [server name] - gets the bot to leave a server (Only works for Blake)'\
 			'\n\n-guess - starts the guessing game'\
 			'\n\n-mark - a special song written by Bahar for Mark'\
+			'\n\n-invite - get an invite link for the bot so it can join your server!'\
 			'\n\nBot coded by Blake with help from Zach.```'\
 		
 		await client.send_message(message.author, msg)
@@ -135,6 +136,10 @@ async def on_message(message):
 		else:
 			msg = '```ERROR: What the FUCK do you think you\'re doing?!```'
 			await client.send_message(message.channel, msg)
+	#invite command
+	elif message.content.startswith('{}invite'.format(cmd)):
+		msg = 'use this link to invite me to your server! :smiley: https://discordapp.com/oauth2/authorize?&client_id=223249543578255360&scope=bot&permissions=0'
+		await client.send_message(message.channel, msg)
 	#Mark command
 	elif message.content.startswith('{}mark'.format(cmd)):
 		msg = '```Mark is a nerd. He ain\'t got no balls.'\
