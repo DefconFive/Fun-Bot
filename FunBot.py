@@ -138,7 +138,10 @@ async def on_message(message):
 			await client.send_message(message.channel, msg)
 	#invite command
 	elif message.content.startswith('{}invite'.format(cmd)):
-		msg = 'use this link to invite me to your server! :smiley: https://discordapp.com/oauth2/authorize?&client_id=223249543578255360&scope=bot&permissions=0'
+		msg = 'use this link to invite me to your server! :smiley:'\
+			'\n\nhttps://discordapp.com/oauth2/authorize?&client_id=223249543578255360&scope=bot&permissions=0'\
+			'\n\nNote from the Developer: I reserve the right to remove my bot from your server for any reason without any prior notice, enjoy my bot!'\
+
 		await client.send_message(message.channel, msg)
 	#Mark command
 	elif message.content.startswith('{}mark'.format(cmd)):
