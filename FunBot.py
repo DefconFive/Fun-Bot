@@ -9,10 +9,12 @@ import json
 import giphypop
 
 from discord import utils
+from discord.ext import commands
 from discord.object import Object
 from discord.enums import ChannelType
 from discord.ext.commands.bot import _get_variable
 from giphypop import translate
+from tabulate import tabulate
 
 
 client = discord.Client()
@@ -26,13 +28,12 @@ cmd = '-'
 #Token = 'MjI0NzE5NjI1OTIzODU0MzM2.Cremqw.tKWTMcD9SqF_nThAjJ3krj9uXWw'
 # this is the bot command prefix
 #cmd = '--'
-
-
 @client.event
 async def on_message(message):
 	# we do not want the bot to reply to itself
 	if message.author == client.user:
 		return
+	print(u' '.join((message.server.name + ": <" + message.author.name, "->", message.channel.name + ">", message.content)).encode('utf-8').strip())
 	#help command. 
 	if message.content.startswith('{}help'.format(cmd)):
 
@@ -41,6 +42,7 @@ async def on_message(message):
 		msg = '```Heres a list of my commands:'\
 			'\n\n-ping - Bot simply replies ping (unless your special) useful for knowing whether or not It\'s online'\
 			'\n\n-cat - Bot posts a random cat picture'\
+			'\n\n-say [message] - Bot echos your message'\
 			'\n\n-trump - Bot posts a random Trump gif'\
 			'\n\n-hillary - Bot posts a random Hillary gif'\
 			'\n\n-bernie - Bot posts a random Bernie gif'\
@@ -104,6 +106,10 @@ async def on_message(message):
 	elif message.content.startswith('{}dog'.format(cmd)):
 		img = translate('Dog', api_key='dc6zaTOxFJmzC')
 		await client.send_message(message.channel,img)
+	#Say command
+	elif message.content.startswith('{}say'.format(cmd)):
+		messageToTTS = message.content[5:]
+		await client.send_message(message.channel, content=messageToTTS)
 	#Restart command
 	elif message.content.startswith('{}restart'.format(cmd)):
 		if message.author.id == '183790956754108416':
@@ -169,6 +175,7 @@ async def on_message(message):
 			await client.send_message(message.channel, 'You are right!')
 		else:
 			await client.send_message(message.channel, 'Sorry. It is actually {}.'.format(answer))
+
 
 
 
