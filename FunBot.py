@@ -33,7 +33,6 @@ async def on_message(message):
 	# we do not want the bot to reply to itself
 	if message.author == client.user:
 		return
-	print(u' '.join((message.server.name + ": <" + message.author.name, "->", message.channel.name + ">", message.content)).encode('utf-8').strip())
 	#help command. 
 	if message.content.startswith('{}help'.format(cmd)):
 
