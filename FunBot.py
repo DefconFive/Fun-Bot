@@ -14,7 +14,7 @@ from discord.object import Object
 from discord.enums import ChannelType
 from discord.ext.commands.bot import _get_variable
 from giphypop import translate
-from tabulate import tabulate
+
 
 
 client = discord.Client()
@@ -182,9 +182,13 @@ async def on_message(message):
 
 @client.event
 async def on_ready():
-	print('Logged in as')
+	servers = len(client.servers)
+
+	print('Logged in as:')
 	print(client.user.name)
 	print(client.user.id)
+	print('Connected to:')
+	print('{} servers'.format(servers))
 	print('------')
 
 client.run(Token)
